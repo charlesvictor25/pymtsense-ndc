@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyapi-deploy
+spec:
+  selector:
+    matchLabels:
+      app: products
+      department: sales
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: products
+        department: sales
+    spec:
+      containers:
+      - name: hello
+        image: "charlesvictor/pyapi"
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
